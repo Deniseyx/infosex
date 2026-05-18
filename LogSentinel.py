@@ -37,8 +37,9 @@ class LogApp(ctk.CTk):
         btn_frame = ctk.CTkFrame(self, fg_color="transparent")
         btn_frame.pack(pady=10, fill="x", padx=50)
 
-        ctk.CTkButton(btn_frame, text="Export Security Report", command=self.export_report, fg_color="#34495e").pack(side="left", padx=10)
-        ctk.CTkButton(btn_frame, text="Clear Viewer", command=self.clear_logs, fg_color="#c0392b").pack(side="right", padx=10)
+        ctk.CTkButton(btn_frame, text="Load Logs", command=self.load_logs, fg_color="#34495e").pack(side="left", padx=10)
+        ctk.CTkButton(btn_frame, text="Export Report", command=self.export_report, fg_color="#27ae60").pack(side="left", padx=10)
+        ctk.CTkButton(btn_frame, text="Clear Logs", command=self.clear_logs, fg_color="#c0392b").pack(side="right", padx=10)
 
         self.alert_box = ctk.CTkLabel(self, text="SYSTEM SECURE", font=("Roboto", 12, "bold"), text_color="gray")
         self.alert_box.pack(pady=20)
@@ -57,13 +58,22 @@ class LogApp(ctk.CTk):
         self.log_display.delete("1.0", "end")
         self.log_display.configure(state="disabled")
 
+    def load_logs(self):
+        self.clear_logs()
+        filename = "sample.log"
+        if os.path.exists(filename):
+            with open(filename, 'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    self.append_log(line.strip())
+
     def export_report(self):
         content = self.log_display.get("1.0", "end")
         report_name = f"Security_Report_{int(time.time())}.txt"
         with open(report_name, "w") as f:
             f.write("--- LogSentinel Official Security Report ---\n")
             f.write(content)
-        print(f"Report saved as {report_name}")
+        self.alert_box.configure(text=f"✅ REPORT EXPORTED: {report_name}", text_color="#2ecc71")
 
     def run_monitor(self):
             filename = "sample.log"

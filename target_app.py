@@ -9,6 +9,7 @@ class TargetApp(ctk.CTk):
         self.title("Target Application - Auth System")
         self.geometry("400x450")
         self.db_file = "database.json"
+        self.current_user = None
         self.show_login()
 
     def load_db(self):
@@ -76,14 +77,28 @@ class TargetApp(ctk.CTk):
         db = self.load_db()
 
         if user in db and db[user] == pw:
+            self.current_user = user
             self.log_event("INFO", f"User '{user}' successfully logged in.")
-            self.status_msg("Success", "green")
+            self.show_welcome(user)
         elif user not in db:
             self.log_event("WARNING", f"Unknown user login attempt: '{user}' not found in database")
             self.status_msg("Unknown User", "orange")
         else:
             self.log_event("ERROR", f"Failed password attempt for user '{user}'")
             self.status_msg("Invalid Credentials", "red")
+
+    def show_welcome(self, username):
+        self.clear_screen()
+        ctk.CTkLabel(self, text=f"Hello, {username}!", font=("Roboto", 28, "bold")).pack(pady=40)
+        ctk.CTkLabel(self, text="Welcome to the secure area.", font=("Roboto", 16)).pack(pady=10)
+        
+        ctk.CTkButton(self, text="Log Out", command=lambda: self.logout(username), 
+                      fg_color="#c0392b", hover_color="#a93226", width=200).pack(pady=30)
+
+    def logout(self, username):
+        self.log_event("INFO", f"User '{username}' logged out.")
+        self.current_user = None
+        self.show_login()
 
     def status_msg(self, text, color):
         lbl = ctk.CTkLabel(self, text=text, text_color=color)
