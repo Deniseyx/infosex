@@ -1,0 +1,20 @@
+2026-05-14 23:13:21 INFO User 'lord' successfully logged in.
+2026-05-14 23:13:39 INFO User 'lord' logged out.
+2026-05-14 23:14:28 WARNING Unknown user login attempt: 'asdasd' not found in database
+2026-05-14 23:18:37 ERROR Failed password attempt for user 'lord'
+2026-05-14 23:18:48 WARNING Unknown user login attempt: 'kjashdjkashdkjashdjkashdjkahdkjashdkjashdkjahsdjkhaasd' not found in database
+2026-05-14 23:18:57 WARNING Unknown user login attempt: 'denise' not found in database
+2026-05-14 23:19:08 INFO New user registered: john
+2026-05-14 23:19:13 INFO User 'john' successfully logged in.
+2026-05-14 23:19:17 INFO User 'john' logged out.
+2026-05-14 23:19:21 INFO User 'john' successfully logged in.
+2026-05-14 23:19:23 INFO User 'john' logged out.
+2026-05-14 23:19:27 ERROR Failed password attempt for user 'john'
+2026-05-14 23:22:15 ERROR Failed password attempt for user 'lord'
+2026-05-14 23:22:25 ERROR Failed password attempt for user 'lord'
+2026-05-14 23:22:29 INFO User 'lord' successfully logged in.
+2026-05-14 23:22:34 INFO User 'lord' logged out.
+2026-05-14 23:22:42 WARNING Unknown user login attempt: 'asdasdasd' not found in database
+2026-05-14 23:22:57 INFO New user registered: jason
+2026-05-14 23:23:04 INFO User 'jason' successfully logged in.
+2026-05-14 23:23:08 INFO User 'jason' logged out.
